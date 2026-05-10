@@ -2,6 +2,18 @@
 
 A command-line Sudoku game built with Java and Spring Boot, featuring a complete validation engine for rows, columns, and 3x3 boxes.
 
+## Interview Process Disclaimer
+
+This project was developed as part of an interview process. The focus was on demonstrating clean code design, separation of concerns, and maintainable architecture rather than optimizing for algorithmic efficiency. The validation engine uses a straightforward approach with arrays of ValidationGroup objects to track conflicts in rows, columns, and boxes.
+
+If given more time, a more advanced implementation using Algorithm X and Dancing Links could be explored for puzzle generation and solving, but that would significantly increase complexity and was not feasible within the weekend timeframe.
+
+## AI Usage
+
+- **IDE Suggestions**: AI-powered type-ahead suggestions were enabled in the IDE, providing minor code completion assistance during development. However, no AI intervention occurred in the overall design or architectural decisions.
+- **Documentation**: The language in this README and other documentation was polished using AI tools to ensure clarity and professionalism.
+
+
 ## Technologies Used
 
 - **Java**: Core programming language
@@ -50,16 +62,6 @@ The application will start a command-line interface where you can play Sudoku by
   - `dispatcher/`: Command dispatching logic
 - `src/test/`: Unit tests
 
-## Interview Process Disclaimer
-
-This project was developed as part of an interview process. The focus was on demonstrating clean code design, separation of concerns, and maintainable architecture rather than optimizing for algorithmic efficiency. The validation engine uses a straightforward approach with arrays of ValidationGroup objects to track conflicts in rows, columns, and boxes.
-
-If given more time, a more advanced implementation using Algorithm X and Dancing Links could be explored for puzzle generation and solving, but that would significantly increase complexity and was not feasible within the weekend timeframe.
-
-## AI Usage
-
-- **IDE Suggestions**: AI-powered type-ahead suggestions were enabled in the IDE, providing minor code completion assistance during development. However, no AI intervention occurred in the overall design or architectural decisions.
-- **Documentation**: The language in this README and other documentation was polished using AI tools to ensure clarity and professionalism.
 
 ## License
 
