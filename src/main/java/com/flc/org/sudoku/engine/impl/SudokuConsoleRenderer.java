@@ -1,12 +1,12 @@
 package com.flc.org.sudoku.engine.impl;
 
 import com.flc.org.sudoku.engine.BoardReader;
-import com.flc.org.sudoku.engine.SudokuRendered;
+import com.flc.org.sudoku.engine.SudokuRenderer;
 import com.flc.org.sudoku.engine.ValidationTrackingService;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SudokuConsoleRenderer extends SudokuRendered {
+public class SudokuConsoleRenderer extends SudokuRenderer {
 
 
     protected SudokuConsoleRenderer(ValidationTrackingService validationTrackingService, BoardReader reader) {

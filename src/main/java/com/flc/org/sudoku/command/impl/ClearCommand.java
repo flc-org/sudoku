@@ -2,15 +2,15 @@ package com.flc.org.sudoku.command.impl;
 
 import com.flc.org.sudoku.command.Command;
 import com.flc.org.sudoku.engine.BoardPlayerInterface;
-import com.flc.org.sudoku.engine.SudokuRendered;
+import com.flc.org.sudoku.engine.SudokuRenderer;
 import org.springframework.stereotype.Component;
 
 @Component("clearCellCommand")
 public class ClearCommand implements Command {
     private final BoardPlayerInterface boardPlayer;
-    private final SudokuRendered renderer;
+    private final SudokuRenderer renderer;
 
-    public ClearCommand(BoardPlayerInterface boardPlayer, SudokuRendered renderer) {
+    public ClearCommand(BoardPlayerInterface boardPlayer, SudokuRenderer renderer) {
         this.boardPlayer = boardPlayer;
         this.renderer = renderer;
     }

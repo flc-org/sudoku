@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Service to track the validation state of the Sudoku board, including which values are invalid in each row, column, and box.
+ * It also tracks the number of empty cells and provides methods to check if the game has ended or to retrieve invalid cells.
+ */
 @Service
 public class ValidationTrackingService {
     int emptyCells = 81;
