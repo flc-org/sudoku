@@ -3,6 +3,10 @@ package com.flc.org.sudoku.engine;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 @Service
 public class ValidationTrackingService {
     int emptyCells = 81;
@@ -42,13 +46,13 @@ public class ValidationTrackingService {
         boxes[boxIndex].clearValue(value, row + "," + col);
     }
 
-    public boolean isCellInvalid(int row , int col,int value) {
+    public boolean isCellInvalid(int row, int col, int value) {
         int boxIndex = (row / 3) * 3 + (col / 3);
         return rows[row].invalidValues.contains(value) || cols[col].invalidValues.contains(value) || boxes[boxIndex].invalidValues.contains(value);
     }
 
     public boolean isGameEnd() {
-        if(emptyCells > 0) {
+        if (emptyCells > 0) {
             return false;
         }
         for (int i = 0; i < 9; i++) {
@@ -58,4 +62,46 @@ public class ValidationTrackingService {
         }
         return true;
     }
+
+    public Iterator<String> getInvalidCells() {
+        List<String> invalidCells = new ArrayList<>();
+        for (int i = 0; i < 9; i++) {
+            for (int value : rows[i].invalidValues) {
+                invalidCells.addAll(rows[i].cells[value]);
+            }
+            for (int value : cols[i].invalidValues) {
+                invalidCells.addAll(cols[i].cells[value]);
+            }
+            for (int value : boxes[i].invalidValues) {
+                invalidCells.addAll(boxes[i].cells[value]);
+            }
+        }
+        return invalidCells.iterator();
+    }
+
+    public List<String> getAllValidationErrors() {
+        List<String> errors = new ArrayList<>();
+        for (int i = 0; i < 9; i++) {
+            for (int value : rows[i].invalidValues) {
+                for (String cell : rows[i].cells[value]) {
+                    errors.add("Number " + value + " already exists in Row " + i + 'A' + ".");
+                }
+            }
+            for (int value : cols[i].invalidValues) {
+                for (String cell : cols[i].cells[value]) {
+                    errors.add("Number " + value + " already exists in Column " + (i + 1) + ".");
+                }
+            }
+            for (int value : boxes[i].invalidValues) {
+                for (String cell : boxes[i].cells[value]) {
+                    errors.add("Number " + value + " already exists in Box same 3x3 grid");
+                }
+            }
+        }
+        if (errors.isEmpty()) {
+            errors.add("No rule violations detected.");
+        }
+        return errors;
+    }
+
 }

@@ -5,11 +5,11 @@ import java.util.Objects;
 import java.util.Set;
 
 public class ValidationGroup {
-    Set<String>[] cells = new Set[9];
+    Set<String>[] cells = new Set[10];
     Set<Integer> invalidValues = new HashSet<>();
 
     boolean canSetValue(int value) {
-        if (Objects.nonNull(cells[value])) {
+        if (Objects.nonNull(cells[value - 1])) {
             return cells[value].isEmpty();
         }
         return true;

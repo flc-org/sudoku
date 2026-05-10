@@ -3,8 +3,6 @@ package com.flc.org.sudoku.engine.impl;
 import com.flc.org.sudoku.engine.BoardReader;
 import com.flc.org.sudoku.engine.SudokuRendered;
 import com.flc.org.sudoku.engine.ValidationTrackingService;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -24,7 +22,14 @@ public class SudokuConsoleRenderer extends SudokuRendered {
             System.out.print((char)('A' + i) + " | ");
             for (int j = 0; j < 9; j++) {
                 int value = reader.getValueAt(i, j);
+                boolean isInvalid = value != 0 && validationTrackingService.isCellInvalid(i, j, value);
+                if (isInvalid) {
+                    System.out.print("\u001B[31m");
+                }
                 System.out.print((value == 0 ? "_" : value) + " ");
+                if (isInvalid) {
+                    System.out.print("\u001B[0m");
+                }
                 if(j % 3 == 2) {
                     System.out.print("| ");
                 }

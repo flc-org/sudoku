@@ -1,6 +1,6 @@
 package com.flc.org.sudoku.engine;
 
-import lombok.RequiredArgsConstructor;
+import lombok.Getter;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -11,6 +11,7 @@ public class SudokuEngine implements BoardReader, BoardPlayerInterface {
     private int[][] board;
     private final ValidationTrackingService validationTrackingService;
     Set<String> prefilledCells = new HashSet<>();
+    @Getter
     Set<String> emptyCells = new HashSet<>();
 
     public SudokuEngine(ValidationTrackingService validationTrackingService) {
@@ -51,8 +52,8 @@ public class SudokuEngine implements BoardReader, BoardPlayerInterface {
         if (prefilledCells.contains(row + "," + col)) {
             return false;
         }
-        this.board[row][col] = 0;
         validationTrackingService.clearValue(row, col, board[row][col]);
+        this.board[row][col] = 0;
         emptyCells.add(row + "," + col);
         return true;
     }
@@ -75,5 +76,10 @@ public class SudokuEngine implements BoardReader, BoardPlayerInterface {
     @Override
     public boolean isBoardComplete() {
         return validationTrackingService.isGameEnd();
+    }
+
+    @Override
+    public boolean canClearValueAt(int row, int col) {
+        return !prefilledCells.contains(row + "," + col);
     }
 }
