@@ -83,19 +83,13 @@ public class ValidationTrackingService {
         List<String> errors = new ArrayList<>();
         for (int i = 0; i < 9; i++) {
             for (int value : rows[i].invalidValues) {
-                for (String cell : rows[i].cells[value]) {
-                    errors.add("Number " + value + " already exists in Row " + i + 'A' + ".");
-                }
+                errors.add("Number " + value + " already exists in Row " + ((char) (i + 'A')) + ".");
             }
             for (int value : cols[i].invalidValues) {
-                for (String cell : cols[i].cells[value]) {
-                    errors.add("Number " + value + " already exists in Column " + (i + 1) + ".");
-                }
+                errors.add("Number " + value + " already exists in Column " + (i + 1) + ".");
             }
             for (int value : boxes[i].invalidValues) {
-                for (String cell : boxes[i].cells[value]) {
-                    errors.add("Number " + value + " already exists in Box same 3x3 grid");
-                }
+                errors.add("Number " + value + " already exists in Box same 3x3 grid");
             }
         }
         if (errors.isEmpty()) {

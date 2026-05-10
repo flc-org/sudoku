@@ -9,7 +9,7 @@ public class ValidationGroup {
     Set<Integer> invalidValues = new HashSet<>();
 
     boolean canSetValue(int value) {
-        if (Objects.nonNull(cells[value - 1])) {
+        if (Objects.nonNull(cells[value])) {
             return cells[value].isEmpty();
         }
         return true;
